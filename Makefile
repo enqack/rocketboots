@@ -1,4 +1,5 @@
 BOOTSTRAP_SOURCE=$(shell pwd)/src/bootstrap
+BOOTSWATCH_SOURCE=$(shell pwd)/src/bootswatch
 FA_SOURCE=$(shell pwd)/src/fontawesome
 JQUERY_SOURCE=$(shell pwd)/src/jquery
 JQUERYUI_SOURCE=$(shell pwd)/src/jqueryui
@@ -16,7 +17,8 @@ HR=\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\
 
 
 all: stage4 
-	@echo "Building Rocketboots..."
+	@echo "\v"
+	@echo "Finished building Rocketboots."
 	@echo "${HR}\n"
 
 stage1: bootstrap fontawesome
@@ -30,14 +32,14 @@ stage4: stage3 jquerymobile
 jquery-all: jquery jqueryui jquerymobile
 
 bootstrap: | buildprep
-	@(cd ./src/bootstrap/ && make)
+	@(cd ./src/bootstrap/ && npm install && make)
 
 jquery: | buildprep
 	@echo "\v"
 	@echo "Building jQuery..."
 	@echo "${HR}\n"
 	@(cd ${JQUERY_SOURCE} && npm install)
-	@(cd ${JQUERY_SOURCE} && grunt dist:${JS_DEST})
+	@(cd ${JQUERY_SOURCE} && grunt && grunt dist:${JS_DEST})
 
 
 # needs npm install phantomjs -g
@@ -54,14 +56,16 @@ jquerymobile: | buildprep
 	@echo "\v"
 	@echo "Building jQuery Mobile..."
 	@echo "${HR}\n"
-	@(cd ${JQUERYM_SOURCE} && npm install)
-	@(cd ${JQUERYM_SOURCE} && grunt js)
-	@(cd ${JQUERYM_SOURCE} && grunt css)
+	@(cd ${JQUERYM_SOURCE} && make docs)
 	cp ${JQUERYM_SOURCE}/compiled/*.js ${JS_DEST}
 	cp ${JQUERYM_SOURCE}/compiled/*.css ${CSS_DEST}
 
 bootswatch: | buildprep
-
+	@echo "\v"
+	@echo "Parsing Bootswatch..."
+	@echo "${HR}\n"
+	#@(cd ${BOOTSWATCH_SOURCE} && ./some-scirpt)
+	@echo "Fake Done\n"
 
 fontawesome: fontawesome-css
 
@@ -74,6 +78,7 @@ fontawesome-font:
 	cp ${FA_SOURCE}/font/* ${FONT_DEST}
 
 
+# will make the final themes responsive
 responsive:
 
 
