@@ -82,8 +82,12 @@ fontawesome-font:
 responsive:
 
 
-buildprep:
+buildprep: init
 	@mkdir -p ${JS_DEST} ${CSS_DEST} ${IMG_DEST} ${FONT_DEST}
+
+init:
+	@git submodule init
+	@git submodule update
 
 clean:
 	@rm -rf $(pwd)/build
