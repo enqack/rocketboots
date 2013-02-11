@@ -1,0 +1,18 @@
+[submodule "src/fontawesome"]
+	path = src/fontawesome
+	url = git://github.com/FortAwesome/Font-Awesome.git
+[submodule "src/bootswatch"]
+	path = src/bootswatch
+	url = git://github.com/thomaspark/bootswatch.git
+[submodule "src/bootstrap"]
+	path = src/bootstrap
+	url = git://github.com/twitter/bootstrap.git
+[submodule "src/jqueryui"]
+	path = src/jqueryui
+	url = git://github.com/jquery/jquery-ui.git
+[submodule "src/jquerymobile"]
+	path = src/jquerymobile
+	url = git://github.com/jquery/jquery-mobile.git
+[submodule "src/jquery"]
+	path = src/jquery
+	url = git://github.com/jquery/jquery.git
