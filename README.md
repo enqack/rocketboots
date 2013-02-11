@@ -1,4 +1,4 @@
 rocketboots
 ===========
 
-A Bootstrap and Font Awesome integration script.
+A Bootstrap, Font Awesome, and jQuery build and integration script.
