@@ -32,7 +32,11 @@ stage4: stage3 jquerymobile
 jquery-all: jquery jqueryui jquerymobile
 
 bootstrap: | buildprep
-	@(cd ./src/bootstrap/ && npm install && make)
+	@(cd ${BOOTSTRAP_SOURCE} && npm install)
+	@(cd ${BOOTSTRAP_SOURCE} && make bootstrap)
+	cp ${BOOTSTRAP_SOURCE}/bootstrap/js/* ${JS_DEST}
+	cp ${BOOTSTRAP_SOURCE}/bootstrap/css/* ${CSS_DEST}
+	cp ${BOOTSTRAP_SOURCE}/bootstrap/img/* ${IMG_DEST}
 
 jquery: | buildprep
 	@echo "\v"
@@ -40,7 +44,6 @@ jquery: | buildprep
 	@echo "${HR}\n"
 	@(cd ${JQUERY_SOURCE} && npm install)
 	@(cd ${JQUERY_SOURCE} && grunt && grunt dist:${JS_DEST})
-
 
 # needs npm install phantomjs -g
 jqueryui: | buildprep
@@ -76,7 +79,6 @@ fontawesome-font:
 	@echo "\vCopying Font Awesome to build directory"
 	@echo "${HR}\n"
 	cp ${FA_SOURCE}/font/* ${FONT_DEST}
-
 
 # will make the final themes responsive
 responsive:
